@@ -1,5 +1,4 @@
 pipeline {
-    agent { dockerfile true }
 
     tools {
         maven 'apache-maven-3.6.3'
@@ -28,6 +27,11 @@ pipeline {
                     junit 'target/surefire-reports/**/*.xml'
                 }
             }
+        }
+        stage('Build image') {
+                /* This builds the actual image; synonymous to
+                 * docker build on the command line */
+                app = docker.build("jenkins-tryout")
         }
     }
 }
