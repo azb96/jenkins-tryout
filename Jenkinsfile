@@ -29,12 +29,13 @@ pipeline {
                 }
             }
         }
-        stage('Build image') {
-            steps {
-            /* This builds the actual image; synonymous to
-            * docker build on the command line */
-                  app = docker.build("jenkins-tryout")
-            }
+
+        stage('Building our image') {
+             steps {
+                  script {
+                    dockerImage = docker.build("jenkins-tryout")
+                  }
+             }
         }
     }
 }
