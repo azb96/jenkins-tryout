@@ -37,13 +37,12 @@ pipeline {
                 }
             }
         }
-         stage('build && SonarQube analysis') {
+         stage('SonarQube analysis') {
+            environment {
+               HOME="."
+            }
             steps {
-                withSonarQubeEnv('SonarQube') {
-                    withMaven(maven: 'apache-maven-3.6.3') {
-                        bat 'mvn sonar:sonar'
-                    }
-                }
+                bat 'mvn sonar:sonar'
             }
          }
         stage('Building our image') {
