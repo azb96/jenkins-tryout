@@ -16,27 +16,26 @@ pipeline {
             }
         }
 
-        stage ('Build') {
-            environment {
-                HOME="."
-            }
-            steps {
-                bat 'mvn -Dmaven.test.failure.ignore=true install'
-            }
-            post {
-                success {
-                    junit 'target/surefire-reports/**/*.xml'
-                }
-            }
-        }
-
-
         stage ('Test') {
             environment {
                 HOME="."
             }
             steps {
                 bat 'mvn test'
+            }
+        }
+
+        stage ('Build') {
+            environment {
+                HOME="."
+            }
+            steps {
+                bat 'mvn install'
+            }
+            post {
+                success {
+                    junit 'target/surefire-reports/**/*.xml'
+                }
             }
         }
 
