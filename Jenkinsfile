@@ -29,7 +29,7 @@ pipeline {
                 HOME="."
             }
             steps {
-                bat 'mvn install -DskipTests = true'
+                bat 'mvn install -DskipTests=true'
             }
             post {
                 success {
