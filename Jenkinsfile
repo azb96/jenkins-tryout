@@ -29,7 +29,7 @@ pipeline {
                 HOME="."
             }
             steps {
-                bat 'mvn install'
+                bat 'mvn install -DskipTests = true'
             }
             post {
                 success {
@@ -42,7 +42,9 @@ pipeline {
                HOME="."
             }
             steps {
-                bat 'mvn sonar:sonar'
+                withSonarQubeEnv("SonarQube") {
+                    bat 'mvn sonar:sonar'
+                }
             }
          }
         stage('Building our image') {
