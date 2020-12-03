@@ -30,6 +30,16 @@ pipeline {
             }
         }
 
+
+        stage ('Test') {
+            environment {
+                HOME="."
+            }
+            steps {
+                bat 'mvn test'
+            }
+        }
+
         stage('Building our image') {
              steps {
                   script {
