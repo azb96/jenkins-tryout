@@ -1,13 +1,5 @@
-FROM maven:3.6.3-openjdk-8 AS builder
-WORKDIR /build
-COPY pom.xml .
-RUN mvn dependency:go-offline -B
-COPY . .
-RUN mvn install -DskipTests
-FROM openjdk:8u171-jre-alpine
-COPY --from=builder /build/target/*-SNAPSHOT.jar /app/firstproject.jar
+FROM maven:3.6.3-openjdk-8
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} app.jar
 EXPOSE 8090
-ENTRYPOINT [ "java", "-jar", "/app/firstproject.jar" ]
-
-
-
+ENTRYPOINT ["java","-jar","/app.jar"]
