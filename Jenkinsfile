@@ -11,6 +11,7 @@ pipeline {
             NEXUS_PROTOCOL = "http"
             NEXUS_URL = "127.0.0.1:8081"
             NEXUS_REPOSITORY = "firstProject-SNAPSHOT"
+            NEXUS_CREDENTIAL_ID = "admin"
     }
 
     stages {
@@ -79,6 +80,7 @@ pipeline {
                                     groupId: pom.groupId,
                                     version: pom.version,
                                     repository: NEXUS_REPOSITORY,
+                                    credentialsId: NEXUS_CREDENTIAL_ID,
                                     artifacts: [
                                         [artifactId: pom.artifactId,
                                         classifier: '',
