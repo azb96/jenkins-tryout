@@ -7,11 +7,7 @@ pipeline {
     }
 
     environment {
-            NEXUS_VERSION = "nexus3.28.1-01"
-            NEXUS_PROTOCOL = "http"
-            NEXUS_URL = "127.0.0.1:8081"
-            NEXUS_REPOSITORY = "first_project_release"
-            NEXUS_CREDENTIAL_ID = "admin"
+            registryUrl '127.0.0.1:8081/repository/firstproject'
     }
 
     stages {
@@ -66,8 +62,7 @@ pipeline {
         stage("Publish to Nexus Repository Manager") {
               steps {
                     script {
-                        docker tag jenkins-tryout NEXUS_URL/repository/firstproject:mytag
-                        docker push NEXUS_URL/repository/firstproject:mytag
+                        dockerImage.push(registryUrl)
                     }
               }
         }
