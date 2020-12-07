@@ -7,7 +7,7 @@ pipeline {
     }
 
     environment {
-            NEXUS_VERSION = "3.28.1-01"
+            NEXUS_VERSION = "nexus3.28.1-01"
             NEXUS_PROTOCOL = "http"
             NEXUS_URL = "127.0.0.1:8081"
             NEXUS_REPOSITORY = "firstProject-SNAPSHOT"
