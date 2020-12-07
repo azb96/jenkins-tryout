@@ -64,10 +64,12 @@ pipeline {
         }
 
         stage("Publish to Nexus Repository Manager") {
-                    steps {
+              steps {
+                    script {
                         docker tag jenkins-tryout localhost:8081/repository/firstproject:mytag
                         docker push localhost:8081/repository/firstproject:mytag
                     }
+              }
         }
     }
 }
