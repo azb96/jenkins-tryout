@@ -58,7 +58,7 @@ pipeline {
         stage("Publish to Nexus Repository Manager") {
               steps {
                     script {
-                        docker.withRegistry('http://127.0.0.1:8081/repository/firstproject'){
+                        docker.withRegistry('http://127.0.0.1:8081/repository/jenkins-tryout'){
                             dockerImage.push()
                         }
 
