@@ -62,7 +62,10 @@ pipeline {
         stage("Publish to Nexus Repository Manager") {
               steps {
                     script {
-                        dockerImage.push(registryUrl)
+                        docker.withRegistry(registryUrl){
+                            dockerImage.push()
+                        }
+
                     }
               }
         }
