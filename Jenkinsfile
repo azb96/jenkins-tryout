@@ -6,10 +6,6 @@ pipeline {
         jdk 'jdk8'
     }
 
-    environment {
-            registryUrl '127.0.0.1:8081/repository/firstproject'
-    }
-
     stages {
         stage ('Initialize') {
             steps {
@@ -62,7 +58,7 @@ pipeline {
         stage("Publish to Nexus Repository Manager") {
               steps {
                     script {
-                        docker.withRegistry(registryUrl){
+                        docker.withRegistry('127.0.0.1:8081/repository/firstproject'){
                             dockerImage.push()
                         }
 
